@@ -5,6 +5,7 @@ from dungeon.place import *
 from dungeon.treasure import *
 from dungeon.helper import *
 
+
 def run_game(game_map, hero):
     try:
         while len(game_map.rooms) > 0:
@@ -17,7 +18,7 @@ def run_game(game_map, hero):
                 monster.update_stat(room.bonus, room.amount)
                 bad_guys.append(monster)
             for single in bad_guys:
-                print("{}'s health: {}".format(single.name, str(single.health)))
+                print("{}'s health:{}".format(single.name, str(single.health)))
             winner = battle(hero, bad_guys[0])
             if winner is hero:
                 print("You have been attacked by {}".format(bad_guys[0].name))
@@ -25,25 +26,25 @@ def run_game(game_map, hero):
                 if answer is "y":
                     game_map.rooms = []
             else:
-                
                 while attack_menu(hero, bad_guys):
                     pass
+
     except DeadHeroException as ex:
-        print("You, {}, have been defeated by {}".format(hero.name, bad_guys[0].name))
+        fmt = "You, {}, have been defeated by {}"
+        print(fmt.format(hero.name, bad_guys[0].name))
+
 
 def main():
-    while (game_menu() ):
+    while (game_menu()):
         game_map = GameMap()
         hero = Hero(input("Enter your hero name: "))
         game_map.build_rooms()
         print("Entering the first ROOM! ")
         run_game(game_map, hero)
-                    
         print("Congrats you made it out alive")
         input("Press any key to continue...")
         clear_screen()
 
-   
 
 if __name__ == "__main__":
     try:
@@ -51,4 +52,3 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt as ex:
         pass
-        

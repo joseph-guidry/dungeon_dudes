@@ -4,11 +4,14 @@ from random import *
 
 
 class Treasure:
-    
-    random_items = [ "Sword", "Potion", "Googles"]
-    
-    def __init__(self):
-        self.name = Treasure.random_items[randrange(0, len(Treasure.random_items))]
+
+    random_items = ["Sword", "Potion", "Googles"]
+
+    def __init__(self, item_name=None):
+        if item_name is None:
+            selection = randrange(0, len(Treasure.random_items))
+            item_name = Treasure.random_items[selection]
+        self.name = item_name
         self.bonus = self.name
         self.amout = self.name
 

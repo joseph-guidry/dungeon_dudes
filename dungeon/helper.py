@@ -1,11 +1,12 @@
-#! /usr/bin/env python3 
+#! /usr/bin/env python3
 
 import os
 from random import *
 
+
 class DeadHeroException(Exception):
     """ When Hero runs out of life points """
-    pass    
+    pass
 
 
 class Dice:
@@ -22,16 +23,18 @@ class Dice:
         """ Return a dice roll int value """
         return randrange(1, self.sides + 1)
 
+
 def clear_screen():
     if os.name is "posix":
         os.system("clear")
     elif os.name is "nt":
         os.system("cls")
 
+
 def game_menu():
 
-    yes = [ "1", "yes", "y", "YES", "Yes", "Y"]
-    no = [ "2", "q", "Q", "quit", "Quit", "QUIT"]
+    yes = ["1", "yes", "y", "YES", "Yes", "Y"]
+    no = ["2", "q", "Q", "quit", "Quit", "QUIT"]
     while(True):
         print("\n\tPlease Enter a selection from the options below: \n")
         print("\t1 ) Start New Game")
@@ -48,15 +51,17 @@ def game_menu():
         except KeyboardInterrupt as ex:
             print("\nPlease select one of the two options")
 
+
 def menu_text():
 
-    clear_screen()    
+    clear_screen()
 
     print("1 ) List items in the loot bag")
     print("2 ) Move to next location")
     print("3 ) Print Hero health")
     print("4 ) Print Monster Health")
     print("5 ) Attack")
+
 
 def attack_menu(hero, monster):
     input("Press any key to continue...")
@@ -92,11 +97,12 @@ def attack_menu(hero, monster):
             if hero.health < 1:
                 raise DeadHeroException
         else:
-           print("No monster to attack, consider going to the next room")
+            print("No monster to attack, consider going to the next room")
     else:
         print("Invalid Option")
 
     return True
+
 
 def battle(hero, monster):
     """ Get dice roll to determine which character takes damage """
@@ -109,13 +115,11 @@ def battle(hero, monster):
     else:
         hero.take_damage(monster)
         return hero
-        
+
 
 def roll_dice(dice, roll=3):
     """ Return the highest dice roll """
     results = []
-    for i in range(0,roll):
-        results.append( dice.roll() )
+    for i in range(0, roll):
+        results.append(dice.roll())
     return max(results)
-
-

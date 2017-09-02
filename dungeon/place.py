@@ -3,15 +3,15 @@
 from random import randrange
 from dungeon.character import Monster
 
+
 class GameMap:
-    
+
     number_of_rooms = randrange(6, 10)
-    #1abdfrst number_of_rooms = 6
-    place_name = [ "Cave", "Room", "Glen"]
+    place_name = ["Cave", "Room", "Glen"]
 
     def __init__(self):
         self.rooms = []
-    
+
     def build_rooms(self):
         """ Add room to map """
         for room in range(0, GameMap.number_of_rooms):
@@ -54,7 +54,9 @@ class Cave(Place):
         self.amount = 1
 
     def description(self):
-        print("This cave has three monsters, and seems to give the monsters extra strength")
+        print("This cave has three monsters")
+        print("It seems to give the monsters extra strength")
+
 
 class Room(Place):
 
@@ -67,6 +69,7 @@ class Room(Place):
     def description(self):
         print("This room doesn't seem to help the monsters")
 
+
 class Glen(Place):
 
     def __init__(self, name):
@@ -77,4 +80,3 @@ class Glen(Place):
 
     def description(self):
         print("This glen seems to give these two monsters better accuracy")
-    
