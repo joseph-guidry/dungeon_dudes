@@ -25,8 +25,7 @@ def run_game(game_map, hero):
                 answer = input("Would you like to jump out the window? [y] >")
                 if answer is "y":
                     game_map.rooms = []
-            else:
-                while attack_menu(hero, bad_guys):
+            while attack_menu(hero, bad_guys):
                     pass
 
     except DeadHeroException as ex:
