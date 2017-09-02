@@ -52,4 +52,4 @@ if __name__ == "__main__":
         print("\tWelcome to the Dungeon Dudes Adventure Quest")
         main()
     except KeyboardInterrupt:
-        pass
+        print("\nHope you enjoyed it")
