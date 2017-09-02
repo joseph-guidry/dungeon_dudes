@@ -2,11 +2,12 @@
 
 """import treasure"""
 from random import randrange
-
+from dungeon.treasure import *
 
 class Character:
 
-    bad_guy_names = ["BAD_GUY", "Megatron", "Star Scream"]
+    bad_guy_names = ["Soundwave", "Megatron", "Starscream", "Buzzsaw",
+                     "Ravage", "Barricade", "Blackout", "Fracture", "Skipjack"]
 
     """ The base class for any character used in the game """
     def __init__(self, char_name):
@@ -90,13 +91,12 @@ class Monster(Character):
         if health is None:
             health = randrange(1, 4)
         self.health = health
-        self.damage = 1
+        self.damage = 2
         self.accuracy = 0
 
     def __str__(self):
         output = []
         output.append("{}".format(super().__str__()))
-        output.append(str(self.health))
         return " ".join(output)
 
     @property
@@ -119,7 +119,13 @@ class Monster(Character):
 
     def drop_treasure(self):
         """ If true, after monster is defeated a random treasure drop """
-        pass
+        num = randrange(0,10)
+        if num is randrange(0,10):
+            print("dropping Treasure")
+            return Treasure()
+        else:
+            return None
+            
 
     def update_stat(self, bonus, amount):
         """ Modify stats for monster in the room """

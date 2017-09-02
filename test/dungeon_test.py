@@ -1,10 +1,11 @@
 #! /usr/bin/env python3
 
 import unittest
-from character import *
-from place import *
-from game import *
-from treasure import *
+from dungeon.character import *
+from dungeon.place import *
+from dungeon.game import *
+from dungeon.treasure import *
+from dungeon.utilities import *
 
 
 class TestDungeons(unittest.TestCase):
@@ -55,6 +56,12 @@ class TestDungeons(unittest.TestCase):
         hero.pickup(item)
         self.assertEqual(len(hero.bag), 1)
         
+     def test_treasure_drop_pickup(self):
+        hero = Hero("Jack")
+        monster = Monster()
+        while monster.drop_treasure() is not None:
+            monst
+        
 
     def test_stat_update(self):
         hero = Hero("Jack")
@@ -94,6 +101,8 @@ class TestDungeons(unittest.TestCase):
         print("{} : {}".format(hero.name, hero.health))
         bad_guy = Monster()
         print("{} : {}".format(hero.name, hero.health))
+
+   
 
 if __name__ == "__main__":
     unittest.main()
