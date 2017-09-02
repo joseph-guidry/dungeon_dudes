@@ -7,9 +7,9 @@ from dungeon.helper import *
 
 
 def run_game(game_map, hero):
+    """ The game logic for dungeon dude Adventure Quest"""
     try:
-        while len(game_map.rooms) > 0:
-            room = game_map.rooms.pop()
+        for room in game_map.rooms:
             room.description()
             # This portion generates a list of monsters in the room
             bad_guys = []
@@ -17,12 +17,10 @@ def run_game(game_map, hero):
                 monster = Monster()
                 monster.update_stat(room.bonus, room.amount)
                 bad_guys.append(monster)
-            for single in bad_guys:
-                print("{}'s health:{}".format(single.name, str(single.health)))
+            print("Attacked by {}".format(bad_guys[0].name))
             winner = battle(hero, bad_guys[0])
-            if winner is hero:
-                print("You have been attacked by {}".format(bad_guys[0].name))
-                answer = input("Would you like to jump out the window? [y] >")
+            if room is game_map.rooms[0] and winner is hero:
+                answer = input("Would you like to escape out the window[y]?>")
                 if answer is "y":
                     game_map.rooms = []
             while attack_menu(hero, bad_guys):
@@ -34,13 +32,15 @@ def run_game(game_map, hero):
 
 
 def main():
-    while (game_menu()):
+    """ Starts the Dungeon Dude Adventure Quest """
+    while (start_menu()):
         game_map = GameMap()
         hero = Hero(input("Enter your hero name: "))
         game_map.build_rooms()
         print("Entering the first ROOM! ")
         run_game(game_map, hero)
-        print("Congrats you made it out alive")
+        if hero.health > 0:
+            print("Congrats you made it out alive")
         input("Press any key to continue...")
         clear_screen()
 

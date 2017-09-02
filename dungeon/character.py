@@ -6,11 +6,10 @@ from dungeon.treasure import *
 
 
 class Character:
-
+    """ The base class for any character used in the game """
     bad_guy_names = ["Soundwave", "Megatron", "Starscream", "Buzzsaw",
                      "Ravage", "Barricade", "Blackout", "Fracture", "Skipjack"]
 
-    """ The base class for any character used in the game """
     def __init__(self, char_name):
         if char_name is None:
             selection = randrange(0, len(Character.bad_guy_names))
@@ -30,6 +29,7 @@ class Character:
         self._name = name
 
     def take_damage(self, character):
+        """ Decrease the characters health value """
         self.health -= character.damage
 
 

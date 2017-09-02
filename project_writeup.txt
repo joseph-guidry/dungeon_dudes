@@ -1,0 +1,88 @@
+Name: Guidry, Joseph
+Date: 02 SEPT 2017
+Current Module: Object Oriented Programming with Python
+Project Name:  Dungeon Dudes
+
+Project Goals:
+	<A two to three sentence description of the project and its intent>
+     
+	- The goal of this project is to incorporate the use of object oriented programming to create an adventure game
+	
+Considerations:
+	<A bulleted list of considerations and conditions which affected the design of your project>
+    - Implementing objects that describe real items.
+    - Apply the DRY principle
+    - Generate random number of enemines in a random number of rooms.
+    - Be able to reach the end, if hero survives.
+
+Initial Design:
+	<A paragraph or more that adequately describes your program's structure and layout discussing the various modules (.c and corresponding .h files) that you implemented>
+	
+	This program is composed of a couple python files:
+    
+    dungeon_dudes.py: This file runs its main function and has the run_game function to get through the game play.
+    
+    In the dungeon packet, there are four modules:
+        character.py  : This file provides the code to generate Heros and Monsters as subclasses of the Character class.
+        place.py      : This file provides the code to generate Places and a GameMap for the Hero to go through, the Place
+                        determines the number of monster to generate.
+        treasure.py   : This file provides the code for creating a treasure item, that can be used by the Hero class.
+        helper.py     : This file provides utility code for dice rolling, printing menus and accepting input.
+
+Data Flow:
+	<A paragraph or longer describing the data flow of the program in a sequential manner.  Include a diagram when necessary.>
+	
+	1. The game starts by asking the user to select a new game or quit. If quit is selected, game will exit.
+	2. After new game has started, the user is prompted to enter a hero name. Then begins the rooms building method.
+	3. In the run_game function the hero will go through the rooms until the end is reached.
+	4. A list of bad_guys is created upon entering each room, based on the type of room. 
+	5. The Hero enters a battle with the first monster on the list, and continues until all have been defeated. 
+        - The Hero and a Monster enter the battle function.
+        - A Dice objecct is generated and roll 3 times by default, returning the highest dice roll per character.
+        - The character with the higher dice roll, applies damage attribute to opponents health attribute.
+	6. If Hero dies, a custom exception is raised to indicate the failure of the Hero.
+	7. After each monster has been defeated, a treasure has a random chance to drop, which modifies the 
+       damage or accuracy of the Hero 
+	8. Repeat until last room is completed, then the game will return to the start menu.
+
+Communication Protocol:
+	<Discuss any custom communication protocol you have used including the various request and responses that may be sent and received.>
+
+	There was no use of custom communication protocols used in this program.
+	
+Potential Pitfalls:
+	<Discuss any potential issues that you might run into while creating the project>
+	
+	1. Completing the project pythonically.
+	2. DRY principle for code reuse.
+    3. Planning the use of inheritance and how classes and objects interact.
+	
+Test Plan:
+	User Test:
+ 		<Describe the steps taken for each user test.>
+ 		1. Test for individual class creation was done with TDD. 
+ 		2. Attempt to make it through a map with one monster in one room.
+ 		3. Expand number of rooms, then number of monsters.
+ 		4. Use of random treasure drops from monsters.
+        5. Add flourish to exit early on first room.
+ 		
+	Test Cases:
+		<A brief overview of the test cases that you implemented.>
+		1. Attempt to Ctrl + C from anywhere in the program.
+		2. Handle different input from user, and menu stages.
+		3. Ensure proper execution of classes using TDD.  
+		4. Trial and Error on making any possible selection at any time.
+		
+		
+Conclusion:
+
+	<A review of the project, what worked, what didn’t and how to improve upon your project in the future.>
+
+	In this project, the return to using PEP8 and python are the most challenging part of this project. 
+    Once returning to a level of understanding the creation of classes and how those classes are built was the next challenge.
+    Through the use of Test Driven Development, the build and use of class attribute and methods help lay the foundation for this
+    project.  Afterward, TDD was abandoned to test how the program came together. Further work with TDD is needed.  
+    The overall picture of the project was enjoyable to develop.
+
+
+

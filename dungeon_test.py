@@ -3,9 +3,8 @@
 import unittest
 from dungeon.character import *
 from dungeon.place import *
-from dungeon.game import *
 from dungeon.treasure import *
-from dungeon.utilities import *
+from dungeon.helper import *
 
 
 class TestDungeons(unittest.TestCase):
@@ -26,10 +25,10 @@ class TestDungeons(unittest.TestCase):
         self.assertIsInstance(bad_guy.health, int)
 
     def test_make_place(self):
-        new_place = Place()
-        new_cave = Cave()
-        new_room = Room()
-        new_glen = Glen()
+        new_place = Place("Place")
+        new_cave = Cave("Cave")
+        new_room = Room("Room")
+        new_glen = Glen("Glen")
 
     def test_get_dice(self):
         dice_roll = Dice()
@@ -42,7 +41,8 @@ class TestDungeons(unittest.TestCase):
     def test_make_map(self):
         room_map = GameMap()
         room_map.build_rooms()
-        self.assertEqual(len(room_map.rooms), 6)
+        self.assertGreater(len(room_map.rooms), 5)
+        self.assertLess(len(room_map.rooms), 11)
 
     def test_treasure_creation(self):
         item = Treasure()
@@ -56,13 +56,12 @@ class TestDungeons(unittest.TestCase):
         hero.pickup(item)
         self.assertEqual(len(hero.bag), 1)
         
-     def test_treasure_drop_pickup(self):
+    def test_treasure_drop_pickup(self):
         hero = Hero("Jack")
         monster = Monster()
         while monster.drop_treasure() is not None:
             monst
         
-
     def test_stat_update(self):
         hero = Hero("Jack")
         item = Treasure()
@@ -89,10 +88,8 @@ class TestDungeons(unittest.TestCase):
 
         if h_health != hero.health:
             pass
-            # print("hero:" + str(h_health) + ":" +  str(hero.health) )
         elif m_health != bad_guy.health:
             pass
-            # print("hero:" + str(m_health) + ":" +  str(bad_guy.health) )
         else:
             raise Exception("No Change")
 

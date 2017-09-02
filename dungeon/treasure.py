@@ -4,7 +4,7 @@ from random import *
 
 
 class Treasure:
-
+    """ The base class for treasure objects in the game """
     random_items = ["Sword", "Potion", "Googles"]
 
     def __init__(self, item_name=None):

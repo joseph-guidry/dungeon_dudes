@@ -11,13 +11,17 @@ class DeadHeroException(Exception):
 
 class Dice:
     """ A dice obj used return a int between 1 and number of sides """
-    def __init__(self):
-        self._sides = 6
+    def __init__(self, sides=6):
+        self.sides = 6
 
     @property
     def sides(self):
         """ The dice used in the game """
         return self._sides
+
+    @sides.setter
+    def sides(self, sides):
+        self._sides = sides
 
     def roll(self):
         """ Return a dice roll int value """
@@ -25,14 +29,15 @@ class Dice:
 
 
 def clear_screen():
+    """ Attempts to clear screen """
     if os.name is "posix":
         os.system("clear")
     elif os.name is "nt":
         os.system("cls")
 
 
-def game_menu():
-
+def start_menu():
+    """ Start menu for the game """
     yes = ["1", "yes", "y", "YES", "Yes", "Y"]
     no = ["2", "q", "Q", "quit", "Quit", "QUIT"]
     while(True):
@@ -40,20 +45,22 @@ def game_menu():
         print("\t1 ) Start New Game")
         print("\t2 ) Quit")
         try:
-            selection = input(" > ")
+            selection = input("=> ")
             print(selection)
             if selection in yes:
                 return True
             elif selection in no:
                 return False
             else:
-                print("Invalid selection. Try again!")
-        except KeyboardInterrupt as ex:
+                raise Exception
+        except Exception as ex:
             print("\nPlease select one of the two options")
+            input("Press any key to continue...")
+            clear_screen()
 
 
 def menu_text():
-
+    """ Output of options for Hero turn """
     clear_screen()
 
     print("1 ) List items in the loot bag")
@@ -64,6 +71,7 @@ def menu_text():
 
 
 def attack_menu(hero, monster):
+    """ Get input option from user, return selected output """
     input("Press any key to continue...")
     menu_text()
     option = input()
@@ -105,16 +113,19 @@ def attack_menu(hero, monster):
 
 
 def battle(hero, monster):
-    """ Get dice roll to determine which character takes damage """
+    """ Takes two characters and determines which takes damage """
     dice = Dice()
     hero_results = roll_dice(dice)
     monster_results = roll_dice(dice)
+    fmt = "{} has damaged {}"
     if hero_results >= monster_results:
+        print(fmt.format(hero.name, monster.name))
         monster.take_damage(hero)
-        return monster
-    else:
-        hero.take_damage(monster)
         return hero
+    else:
+        print(fmt.format(monster.name, hero.name))
+        hero.take_damage(monster)
+        return monster
 
 
 def roll_dice(dice, roll=3):
