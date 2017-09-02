@@ -19,6 +19,8 @@ def run_game(game_map, hero):
                 bad_guys.append(monster)
             print("Attacked by {}".format(bad_guys[0].name))
             winner = battle(hero, bad_guys[0])
+            if bad_guys[0].health < 1:
+                bad_guys.pop(0)
             if room is game_map.rooms[0] and winner is hero:
                 answer = input("Would you like to escape out the window[y]?>")
                 if answer is "y":
@@ -49,5 +51,5 @@ if __name__ == "__main__":
     try:
         print("\tWelcome to the Dungeon Dudes Adventure Quest")
         main()
-    except KeyboardInterrupt as ex:
+    except KeyboardInterrupt:
         pass

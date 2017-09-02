@@ -77,9 +77,10 @@ def attack_menu(hero, monster):
     option = input()
 
     if option is "1":
-        print("Display loot bag")
+        loot_bag = ["Loot bag: "]
         for item in hero.bag:
-            print(str(item))
+            loot_bag.append(str(item))
+        print("".join(loot_bag))
     elif option is "2":
         print("Advancing to the next room")
         if len(monster) is 0:
