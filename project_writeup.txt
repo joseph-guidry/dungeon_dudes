@@ -12,7 +12,7 @@ Considerations:
 	<A bulleted list of considerations and conditions which affected the design of your project>
     - Implementing objects that describe real items.
     - Apply the DRY principle
-    - Generate random number of enemines in a random number of rooms.
+    - Generate random number of enemies in a random number of rooms.
     - Be able to reach the end, if hero survives.
 
 Initial Design:
@@ -23,7 +23,7 @@ Initial Design:
     dungeon_dudes.py: This file runs its main function and has the run_game function to get through the game play.
     
     In the dungeon packet, there are four modules:
-        character.py  : This file provides the code to generate Heros and Monsters as subclasses of the Character class.
+        character.py  : This file provides the code to generate Heros and Monsters as sub-classes of the Character class.
         place.py      : This file provides the code to generate Places and a GameMap for the Hero to go through, the Place
                         determines the number of monster to generate.
         treasure.py   : This file provides the code for creating a treasure item, that can be used by the Hero class.
@@ -38,7 +38,7 @@ Data Flow:
 	4. A list of bad_guys is created upon entering each room, based on the type of room. 
 	5. The Hero enters a battle with the first monster on the list, and continues until all have been defeated. 
         - The Hero and a Monster enter the battle function.
-        - A Dice objecct is generated and roll 3 times by default, returning the highest dice roll per character.
+        - A Dice object is generated and roll 3 times by default, returning the highest dice roll per character.
         - The character with the higher dice roll, applies damage attribute to opponents health attribute.
 	6. If Hero dies, a custom exception is raised to indicate the failure of the Hero.
 	7. After each monster has been defeated, a treasure has a random chance to drop, which modifies the 
@@ -53,7 +53,7 @@ Communication Protocol:
 Potential Pitfalls:
 	<Discuss any potential issues that you might run into while creating the project>
 	
-	1. Completing the project pythonically.
+	1. Writing the project to be pythonic.
 	2. DRY principle for code reuse.
     3. Planning the use of inheritance and how classes and objects interact.
 	
